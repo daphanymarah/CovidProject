@@ -24,6 +24,12 @@ SELECT location, population, MAX(total_cases) AS HighestInfectionCount, MAX((CAS
 FROM CovidDeaths cd 
 GROUP BY location, population 
 ORDER BY HighestPercentageInfectedPopulation DESC
+--Looking at countries with highest infection rate compared to the population by date
+
+SELECT location, population, date, MAX(total_cases) AS HighestInfectionCount, MAX((CAST(total_cases AS FLOAT)/population))*100 AS HighestPercentageInfectedPopulation
+FROM CovidDeaths cd 
+GROUP BY location, population, date
+ORDER BY HighestPercentageInfectedPopulation DESC
 --Continents with the highest Death Count per Population
 SELECT continent , MAX(CAST(total_deaths AS INT)) AS TotalDeathCount
 FROM CovidDeaths cd
