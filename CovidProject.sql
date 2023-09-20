@@ -1,3 +1,4 @@
+SQLite version
 --Select data that's gonna be used
 SELECT location, date, total_cases, new_cases, total_deaths , population 
 FROM CovidDeaths 
