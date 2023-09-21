@@ -19,6 +19,13 @@ FROM CovidDeaths cd
 WHERE location LIKE 'Brazil'
 AND continent IS NOT NULL
 ORDER BY 1,2
+--Looking individually at countries with highest infection count
+SELECT location, population, MAX((CAST(total_cases AS FLOAT))) AS HighestInfectionCount
+FROM CovidDeaths cd 
+WHERE location LIKE 'Brazil'
+GROUP BY location, population 
+ORDER BY HighestInfectionCount
+
 --Looking at countries with highest infection rate compared to population
 SELECT location, population, MAX(total_cases) AS HighestInfectionCount, MAX((CAST(total_cases AS FLOAT)/population))*100 AS HighestPercentageInfectedPopulation
 FROM CovidDeaths cd 
